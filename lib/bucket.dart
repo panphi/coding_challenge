@@ -1,31 +1,11 @@
-import 'package:flutter/material.dart';
+import 'board_run.dart';
 
-class Bucket extends StatefulWidget {
+/// Data Representation for a Bucket
+/// contains the [ballAmount] which are in this [Bucket] and the [index] (position)
+/// which it has in its [BoardRun]
+class Bucket {
   final int ballAmount;
+  final int index;
 
-  Bucket(this.ballAmount);
-
-  @override
-  _BucketState createState() => _BucketState();
-}
-
-class _BucketState extends State<Bucket> {
-  bool isButtonDisabled;
-
-  @override
-  void initState() {
-    super.initState();
-    isButtonDisabled = false;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: isButtonDisabled
-            ? null
-            : () {
-                print('new Run');
-              },
-        child: Text('${widget.ballAmount}'));
-  }
+  Bucket(this.ballAmount, this.index);
 }

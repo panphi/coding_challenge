@@ -1,26 +1,31 @@
+import 'package:coding_challenge/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'board_run.dart';
 
+/// Main Widget of the Application containing all the BoardRuns in it
+///
+/// shows all [BoardRun]s that happened
 class CodingChallenge extends StatefulWidget {
   @override
-  _CodingChallengeState createState() => _CodingChallengeState();
+  CodingChallengeState createState() => CodingChallengeState();
 }
 
-class _CodingChallengeState extends State<CodingChallenge> {
-  List<BoardRun> runs = [BoardRun(4.5, 10000)];
-
+class CodingChallengeState extends State<CodingChallenge> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider(
+      create: (context) => Helper()..addItem(BoardRun(4.5, 10000)),
+      child: MaterialApp(
         home: Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: runs,
+          body: SafeArea(
+            child: Consumer<Helper>(builder: (context, helper, _) {
+              return Column(children: context.watch<Helper>().allRuns);
+            }),
+          ),
         ),
       ),
-    ));
+    );
   }
-
-  void addNewRun() {}
 }
