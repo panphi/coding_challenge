@@ -2,6 +2,7 @@ import 'package:coding_challenge/board_run.dart';
 import 'package:coding_challenge/board_run_widget.dart';
 import 'package:flutter/material.dart';
 
+/// Widget to draw the 'curve' of a [BoardRun]
 class CurveDrawing extends StatelessWidget {
   final BoardRunWidget currentRun;
 
@@ -22,6 +23,8 @@ class CurvePainter extends CustomPainter {
 
   CurvePainter(this.currentRun);
 
+  /// draws a line of the amount of balls per [Bucket] relative to the overall
+  /// amount of Balls that fell in the [currentRun]
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
